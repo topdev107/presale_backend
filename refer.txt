@@ -1,0 +1,26 @@
+const volume24_url = 'https://fathomless-savannah-95001.herokuapp.com/api/v1/tnxs/'
+const getVolume24h = async () => {
+          const res = await fetch(volume24_url.concat('get_tnx_amount_24h/').concat(token.address))
+          return res.json()
+        }
+
+
+
+const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ token_address: tkn.address, amount: (+amount / (10 ** tkn.decimals)).toString(), timestamp: Date.now() })
+          };
+
+          fetch(volume24_url.concat('add_tnx/'), requestOptions)
+            .then(res => res.json())
+            .then(data => {
+              fetch(volume24_url.concat('get_tnx_amount_24h/').concat(tkn.address))
+                .then(res1 => res1.json())
+                .then(data1 => {
+                  const idx = baseData.findIndex((d) => d.address.toLowerCase() === tkn.address.toLowerCase())
+                  const volume24h = baseData[idx].volume24
+                  baseData[idx].volume24 = data1.status === 'success' ? data1.volume24 : volume24h
+                  setIsNeedRefresh(true)
+                })
+            })

@@ -1,0 +1,32 @@
+{
+  "name": "stable_coin_eco_backend",
+  "version": "1.0.0",
+  "description": "Stable Coin Ecosystem on BSC (testnet) : Backend",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon server.js",
+    "app": "nodemon server.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "react-scripts build"
+  },
+  "author": "topdev511",
+  "license": "MIT",
+  "dependencies": {
+    "algosdk": "^1.12.0",
+    "bcrypt": "^5.0.1",
+    "body-parser": "^1.19.0",
+    "config": "^3.3.6",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "express-group-routes": "^1.1.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.0.13",
+    "passport": "^0.5.0",
+    "passport-jwt": "^4.0.0",
+    "validator": "^13.7.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
