@@ -35,17 +35,14 @@ const PresaleSchema = new mongoose.Schema({
   },
   iswhitelist: {
     type: Boolean,
-    required: true
   },
   token_presale_rate: {
     type: Number,
     default: 0,
-    required: true,
   },
   token_listing_rate: {
     type: Number,
     default: 0,
-    required: true,
   },
   softcap: {
     type: Number,
@@ -55,11 +52,9 @@ const PresaleSchema = new mongoose.Schema({
   hardcap: {
     type: Number,
     default: 0.0,
-    required: true,
   },
   unsold: {
     type: Boolean,
-    required: true,
   },
   starttime: {
     type: Date,
@@ -79,7 +74,6 @@ const PresaleSchema = new mongoose.Schema({
   },
   maxBuy: {
     type: Number,
-    required: true,
   },
   minBuy: {
     type: Number,
@@ -151,6 +145,10 @@ const PresaleSchema = new mongoose.Schema({
   description: {
     type: String,
   },
+  presaletype: {
+    type: Boolean,
+    required: true,
+  }
 });
 // }, {timestamps: true});
 

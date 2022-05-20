@@ -28,6 +28,26 @@ router.get('/all/', (req, res) => {
     .catch(err => res.status(404).json(err))
 })
 
+router.get('/page', (req, res) => {
+    console.log('pages, -1-------')
+    
+    const currentPage = req.query.currentPage
+    const pageCount = req.query.pageCount
+    console.log(currentPage, pageCount)
+    Presale.find({},
+        {
+            logoURL: 1, presale_addr: 1, token_name: 1, token_symbol: 1, token_presale_rate: 1, softcap: 1, hardcap: 1,
+            liquidityPercent: 1, lockupTime: 1, starttime: 1, endtime: 1, presaletype: 1,
+            _id: 1
+        }
+    ).limit(+pageCount).skip((+currentPage - 1) * +pageCount)
+    .then(data => {
+        console.log(data)
+        res.json(data)
+    })
+    .catch(err => res.status(404).json(err))
+})
+
 router.get('/:_id', (req, res) => {
     console.log(req.params, 'here-----------------')
     Presale.findById(req.params._id)
@@ -45,14 +65,14 @@ router.post('/addpad', (req, res) => {
         liquidityPercent, lockupTime, maxBuy, minBuy, useVestingCont, ves_firstReleasePresale,
         ves_vestingPeriod, ves_presaleTokenRelease, useTeamVest, team_totalTeamVest, team_firstTokenReleaseMinute,
         team_firstTokenReleasePercent, team_vestingPeriod, team_teamTokenRelease, logoURL, websiteURL, facebookURL,
-        twitterURL, githubURL, telegramURL, instagramURL, discordURL, redditURL, description } = req.body;
+        twitterURL, githubURL, telegramURL, instagramURL, discordURL, redditURL, description, presaletype } = req.body;
         
     const presale = new Presale ({ token_owner, presale_addr, token_name, token_symbol, token_decimal, token_supply, token_addr, iswhitelist,
         token_presale_rate, token_listing_rate, softcap, hardcap, unsold, starttime, endtime, 
         liquidityPercent, lockupTime, maxBuy, minBuy, useVestingCont, ves_firstReleasePresale,
         ves_vestingPeriod, ves_presaleTokenRelease, useTeamVest, team_totalTeamVest, team_firstTokenReleaseMinute,
         team_firstTokenReleasePercent, team_vestingPeriod, team_teamTokenRelease, logoURL, websiteURL, facebookURL,
-        twitterURL, githubURL, telegramURL, instagramURL, discordURL, redditURL, description });
+        twitterURL, githubURL, telegramURL, instagramURL, discordURL, redditURL, description, presaletype });
     presale.save()
     .then((result) => {
         res.json(result);
