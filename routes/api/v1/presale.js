@@ -34,7 +34,8 @@ router.get('/page', (req, res) => {
     const currentPage = req.query.currentPage
     const pageCount = req.query.pageCount
     console.log(currentPage, pageCount)
-    Presale.find({},
+    Presale.find({
+        },
         {
             logoURL: 1, presale_addr: 1, token_name: 1, token_symbol: 1, token_presale_rate: 1, softcap: 1, hardcap: 1,
             liquidityPercent: 1, lockupTime: 1, starttime: 1, endtime: 1, presaletype: 1,
@@ -47,6 +48,30 @@ router.get('/page', (req, res) => {
     })
     .catch(err => res.status(404).json(err))
 })
+
+router.get('/myzone', (req, res) => {
+    console.log('pages, -myzone-------')
+    
+    const currentPage = req.query.currentPage
+    const pageCount = req.query.pageCount
+    const owner = req.query.owner
+    console.log(currentPage, pageCount)
+    Presale.find({
+            token_owner: owner
+        },
+        {
+            logoURL: 1, presale_addr: 1, token_name: 1, token_symbol: 1, token_presale_rate: 1, softcap: 1, hardcap: 1,
+            liquidityPercent: 1, lockupTime: 1, starttime: 1, endtime: 1, presaletype: 1,
+            _id: 1
+        }
+    ).limit(+pageCount).skip((+currentPage - 1) * +pageCount)
+    .then(data => {
+        console.log(data)
+        res.json(data)
+    })
+    .catch(err => res.status(404).json(err))
+})
+
 
 router.get('/:_id', (req, res) => {
     console.log(req.params, 'here-----------------')
