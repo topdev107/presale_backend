@@ -148,6 +148,10 @@ const PresaleSchema = new mongoose.Schema({
   presaletype: {
     type: Boolean,
     required: true,
+  },
+  network: {
+    type: Number,
+    required: true,
   }
 });
 // }, {timestamps: true});
