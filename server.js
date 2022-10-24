@@ -16,14 +16,15 @@ connectDB();
 
 // cors
 // app.use(cors({ origin: true, credentials: true }));
+app.use(cors());
 // app.use(cors({origin:['https://presale-backend.vercel.app', 'https://flash-launch.com']}));
-var corsOptions = {
-  origin: 'https://presale-backend.vercel.app',
-  optionsSuccessStatus: 200, // For legacy browser support
-  methods: "GET, POST"
-}
+// var corsOptions = {
+//   origin: 'https://presale-backend.vercel.app',
+//   optionsSuccessStatus: 200, // For legacy browser support
+//   methods: "GET, POST"
+// }
 
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
 
 // Init Middleware
 app.use(express.json());
