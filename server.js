@@ -16,7 +16,7 @@ connectDB();
 
 // cors
 // app.use(cors({ origin: true, credentials: true }));
-app.use(cors());
+app.use(cors({origin:['https://presale-backend.vercel.app']}));
 
 // Init Middleware
 app.use(express.json());
