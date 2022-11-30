@@ -32,6 +32,27 @@ router.get('/all', (req, res) => {
     .catch(err => res.status(404).json(err))
 })
 
+router.get('/pendings', (req, res) => {
+    console.log('all, -0------')
+    const chainId = req.query.chainId
+    
+    Presale.find({
+        network: chainId,
+        verified: false
+    })
+    .then(data => {
+        console.log(data)
+        res.json(data)
+    })
+    .catch(err => res.status(404).json(err))
+})
+
+router.put('/:id', (req, res) => {
+    Presale.findByIdAndUpdate(req.params.id, req.body)
+        .then(data => res.json({ status: "success", "data": data }))
+        .catch(err => res.json(err));
+});
+
 router.get('/page', (req, res) => {
     console.log('pages, -1-------')
     
