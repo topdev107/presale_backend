@@ -15,7 +15,19 @@ const Presale = require("../../../models/Presale");
 //     // .catch(err => res.status(404).json(err));
 // });
 
-
+router.get('/allboth', (req, res) => {
+    console.log('all, -0------')
+    const chainId = req.query.chainId
+    
+    Presale.find({
+        network: chainId,
+    })
+    .then(data => {
+        console.log(data)
+        res.json(data)
+    })
+    .catch(err => res.status(404).json(err))
+})
 
 router.get('/all', (req, res) => {
     console.log('all, -0------')
