@@ -25,30 +25,32 @@ var corsOptions = {
 }
 
 app.use(cors(corsOptions));
+app.use(cors({origin: 'https://presale-khaki.vercel.app/'}));
 
 // Init Middleware
 app.use(express.json());
 app.use(express.urlencoded({
     extended: false
   }));
-app.use(function (req, res, next) {
 
-  // Website you wish to allow to connect
-  res.setHeader('Access-Control-Allow-Origin', '*');
+// app.use(function (req, res, next) {
 
-  // Request methods you wish to allow
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+//   // Website you wish to allow to connect
+//   res.setHeader('Access-Control-Allow-Origin', 'https://presale-khaki.vercel.app/');
 
-  // Request headers you wish to allow
-  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+//   // Request methods you wish to allow
+//   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
 
-  // Set to true if you need the website to include cookies in the requests sent
-  // to the API (e.g. in case you use sessions)
-  res.setHeader('Access-Control-Allow-Credentials', true);
+//   // Request headers you wish to allow
+//   res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
 
-  // Pass to next layer of middleware
-  next();
-});
+//   // Set to true if you need the website to include cookies in the requests sent
+//   // to the API (e.g. in case you use sessions)
+//   res.setHeader('Access-Control-Allow-Credentials', true);
+
+//   // Pass to next layer of middleware
+//   next();
+// });
 
 app.get('/', (req, res) => res.send('Hello world!'));
 
