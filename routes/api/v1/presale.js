@@ -108,6 +108,7 @@ router.post('/addpad', (req, res) => {
         ves_vestingPeriod, ves_presaleTokenRelease, useTeamVest, team_totalTeamVest, team_firstTokenReleaseMinute,
         team_firstTokenReleasePercent, team_vestingPeriod, team_teamTokenRelease, logoURL, websiteURL, facebookURL,
         twitterURL, githubURL, telegramURL, instagramURL, discordURL, redditURL, description, presaletype, network});
+    presale['verified'] = false;
     console.log('presale object: ', presale);
     presale.save()
     .then((result) => {
