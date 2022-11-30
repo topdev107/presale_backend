@@ -107,7 +107,8 @@ router.post('/addpad', (req, res) => {
         liquidityPercent, lockupTime, maxBuy, minBuy, useVestingCont, ves_firstReleasePresale,
         ves_vestingPeriod, ves_presaleTokenRelease, useTeamVest, team_totalTeamVest, team_firstTokenReleaseMinute,
         team_firstTokenReleasePercent, team_vestingPeriod, team_teamTokenRelease, logoURL, websiteURL, facebookURL,
-        twitterURL, githubURL, telegramURL, instagramURL, discordURL, redditURL, description, presaletype, network });
+        twitterURL, githubURL, telegramURL, instagramURL, discordURL, redditURL, description, presaletype, network});
+    console.log('presale object: ', presale);
     presale.save()
     .then((result) => {
         res.json(result);

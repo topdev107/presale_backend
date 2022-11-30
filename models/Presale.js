@@ -27,7 +27,6 @@ const PresaleSchema = new mongoose.Schema({
     type: Number,
     default: 0,
     required: true,
-
   },
   token_addr: {
     type: String,
@@ -152,6 +151,11 @@ const PresaleSchema = new mongoose.Schema({
   network: {
     type: Number,
     required: true,
+  },
+  verified: {
+    type: Boolean,
+    default: false,
+    required: true
   }
 });
 // }, {timestamps: true});
