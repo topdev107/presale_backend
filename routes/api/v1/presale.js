@@ -39,8 +39,8 @@ router.get('/page', (req, res) => {
     const pageCount = req.query.pageCount
     const chainId = req.query.chainId
     Presale.find({
-            network: chainId,            
-            verified: true,
+            network: chainId,
+            verified: true
         },
         {
             logoURL: 1, presale_addr: 1, token_name: 1, token_symbol: 1, token_presale_rate: 1, softcap: 1, hardcap: 1,
