@@ -22,7 +22,8 @@ router.get('/all', (req, res) => {
     const chainId = req.query.chainId
     
     Presale.find({
-        network: chainId
+        network: chainId,
+        verified: true
     })
     .then(data => {
         console.log(data)
@@ -38,7 +39,8 @@ router.get('/page', (req, res) => {
     const pageCount = req.query.pageCount
     const chainId = req.query.chainId
     Presale.find({
-            network: chainId
+            network: chainId,
+            verified: true
         },
         {
             logoURL: 1, presale_addr: 1, token_name: 1, token_symbol: 1, token_presale_rate: 1, softcap: 1, hardcap: 1,
@@ -62,7 +64,7 @@ router.get('/myzone', (req, res) => {
     const chainId = req.query.chainId
     Presale.find({
             token_owner: owner,
-            network: chainId
+            verified: true
         },
         {
             logoURL: 1, presale_addr: 1, token_name: 1, token_symbol: 1, token_presale_rate: 1, softcap: 1, hardcap: 1,
