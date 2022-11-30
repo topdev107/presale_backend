@@ -27,6 +27,7 @@ app.get('/', (req, res) => res.send('Hello world!'));
 
 // use Routes
 app.use('/presale', router);
+//app.use('/api/v1/', router);
 
 const port = process.env.PORT || 8082;
 
