@@ -54,6 +54,22 @@ router.get('/pendings', (req, res) => {
     })
     .then(data => {
         console.log(data)
+        //data['status'] = 'success';
+        res.json(data)
+    })
+    .catch(err => res.status(404).json(err))
+})
+
+router.get('/pendingall', (req, res) => {
+    console.log('all, -0------')
+    //const chainId = req.query.chainId
+    
+    Presale.find({
+        verified: false
+    })
+    .then(data => {
+        console.log(data)
+        //data['status'] = 'success';
         res.json(data)
     })
     .catch(err => res.status(404).json(err))
