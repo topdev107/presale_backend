@@ -144,6 +144,21 @@ router.get('/:_id', (req, res) => {
         .catch(err => res.status(404).json(err))
 })
 
+router.delete('/:_id', (req, res) => {
+    const chainId = req.query.chainId
+    console.log(req.params, 'here-----------------')
+    const id = req.params._id
+    Presale.deleteOne({
+        network: chainId,
+        _id: id
+    })
+    .then(data => {
+        res.json(data)
+        console.log(data)
+    })
+    .catch(err => res.status(404).json(err))    
+})
+
 router.post('/addpad', (req, res) => {
     console.log('here -------- ', req)
     const { token_owner, presale_addr, token_name, token_symbol, token_decimal, token_supply, token_addr, iswhitelist,
