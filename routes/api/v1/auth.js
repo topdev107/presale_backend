@@ -106,4 +106,35 @@ router.post('/login', async (req, res) => {
     }
 });
 
+router.post('/update', async (req, res) => {
+    try {
+        const {email, oldpass, newpass} = req.body;
+
+        // Validate user input
+        if (!(email && oldpass && newpass)) {
+            return res.status(Const.httpCodeMissingParam).json({"status": "error", "message": "All input is required."})
+        }
+
+        // Validate if user exist in our database
+        const user = await User.findOne({$or: [{"username": email}, {"email": email}]});
+
+        if (user && (await bcrypt.compare(oldpass, user.password))) {
+            encryptedPassword = await bcrypt.hash(newpass, 10);        
+        
+            //update user password
+            User.findByIdAndUpdate(user._id, {'password': encryptedPassword})
+            // Presale.findByIdAndUpdate(req.params.id, req.body)
+            //     .then(data => res.json({ status: "success", "data": data }))
+            //     .catch(err => res.json(err));
+
+            // user
+            return res.status(Const.httpCodeSuccess).json({"status": "success", "user": user});
+        }
+
+        return res.status(Const.httpCodeWrongParam).json({"status": "error", "message": "Invalid Credentials."});
+    } catch (err) {
+        return res.status(Const.httpCodeUnknown).json({"status": "error", "message": err});
+    }
+});
+
 module.exports = router;
